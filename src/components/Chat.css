@@ -40,6 +40,8 @@
 }
 
 .chat_messages {
+    display: flex;
+    flex-direction: column;
     margin: 5px;
     overflow-y: auto;
     flex: 1;

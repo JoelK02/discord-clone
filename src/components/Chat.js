@@ -11,6 +11,7 @@ import { selectChannelId, selectChannelName } from "../features/appSlice";
 import { selectUser } from "../features/userSlice";
 import db from "../firebase";
 import firebase from "firebase";
+import ReactScrollableFeed from "react-scrollable-feed";
 
 function Chat() {
   const user = useSelector(selectUser);
@@ -24,7 +25,7 @@ function Chat() {
       db.collection("channels")
         .doc(channelId)
         .collection("messages")
-        .orderBy("timestamp", "desc")
+        .orderBy("timestamp", "asc")
         .onSnapshot((snapshot) =>
           setMessages(snapshot.docs.map((doc) => doc.data()))
         );
@@ -47,13 +48,15 @@ function Chat() {
     <div className="chat">
       <ChatHeader channelName={channelName} />
       <div className="chat_messages">
-        {messages.map((message) => (
-          <Message
-            timestamp={message.timestamp}
-            message={message.message}
-            user={message.user}
-          />
-        ))}
+        <ReactScrollableFeed>
+          {messages.map((message) => (
+            <Message
+              timestamp={message.timestamp}
+              message={message.message}
+              user={message.user}
+            />
+          ))}
+        </ReactScrollableFeed>
       </div>
 
       <div className="chat_input">
