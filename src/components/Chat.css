@@ -19,7 +19,6 @@
 }
 
 .chat_input>form>input {
-    padding: 15px;
     background: transparent;
     border: none;
     outline-width: 0;
@@ -41,5 +40,22 @@
 }
 
 .chat_messages {
+    margin: 5px;
+    overflow-y: auto;
     flex: 1;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #2e3338;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #202225;
 }
