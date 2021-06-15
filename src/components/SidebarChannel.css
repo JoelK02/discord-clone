@@ -1,18 +1,38 @@
-.sidebarChannel:hover>h4 {
+.channelSection:hover>h4 {
     color: white;
     background-color: #40464b;
 }
 
-.sidebarChannel>h4 {
+.channelSection>h4 {
     display: flex;
-    padding-left: 15px;
+    padding-left: 10px;
     align-items: center;
     background-color: #2f3135;
     color: gray;
     cursor: pointer;
 }
 
+.channelSection>.channel_delete {
+    color: #2f3135;
+}
+
+.channel_delete>.channelDelete:hover {
+    color: grey;
+}
+
 .sidebarChannel_hash {
     font-size: 30px;
     padding: 8px;
+}
+
+.channelSection {
+    display: flex;
+}
+
+.channel_text {
+    flex: 1;
+}
+
+.channel_delete {
+    padding: 10px;
 }

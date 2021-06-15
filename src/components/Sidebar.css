@@ -1,7 +1,7 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    flex: 0.25;
+    flex: 0.2;
     height: 100vh;
     background-color: #2f3135;
 }
@@ -43,9 +43,8 @@
     justify-content: space-between;
     align-items: center;
     color: grey;
-    background-color: #2f3135;
+    background-color: #292b2f;
     padding: 10px;
-    border-top: 1px solid gray;
 }
 
 .sidebar_voiceInfo {
@@ -74,10 +73,14 @@
     padding: 10px;
 }
 
-.sidebar_profileInfo>h3 {
+.sidebar_profileInfo>h4 {
     color: white;
 }
 
 .sidebar_profileIcons>.MuiSvgIcon-root {
-    padding: 10px;
+    padding: 8px;
+}
+
+.sidebar_profileIcons {
+    display: flex;
 }

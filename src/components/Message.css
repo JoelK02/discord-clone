@@ -1,8 +1,12 @@
 .message {
     display: flex;
-    align-items: center;
-    padding: 20px;
+    align-items: top;
+    padding: 15px;
     color: white;
+}
+
+.message_avatar {
+    margin-top: 7px;
 }
 
 .message_info {

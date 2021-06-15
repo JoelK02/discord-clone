@@ -19,6 +19,8 @@ function Chat() {
   const channelName = useSelector(selectChannelName);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
+  const [show, setShow] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     if (channelId) {
@@ -39,7 +41,10 @@ function Chat() {
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       message: input,
       user: user,
+      image: imageUrl,
     });
+
+    console.log("hi");
 
     setInput("");
   };
@@ -54,28 +59,49 @@ function Chat() {
               timestamp={message.timestamp}
               message={message.message}
               user={message.user}
+              image={message.image}
             />
           ))}
         </ReactScrollableFeed>
       </div>
 
       <div className="chat_input">
-        <AddCircleIcon fontSize="large" />
+        <AddCircleIcon
+          onClick={() => setShow(!show)}
+          className="chat_circle"
+          fontSize="large"
+        />
         <form>
-          <input
-            value={input}
-            disabled={!channelId}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={`Message #${channelName}`}
-          />
-          <button
-            disabled={!channelId}
-            className="chat_inputButton"
-            type="submit"
-            onClick={sendMessage}
-          >
-            Send Message
-          </button>
+          <div className="chat_inputCenter">
+            <div className="chat_inputText">
+              <input
+                value={input}
+                disabled={!channelId}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder={`Message #${channelName}`}
+              />
+            </div>
+
+            {show ? (
+              <div className="chat_inputImage">
+                <input
+                  value={imageUrl}
+                  disabled={!channelId}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  placeholder={`Image`}
+                />
+              </div>
+            ) : null}
+
+            <button
+              disabled={!channelId}
+              className="chat_inputButton"
+              type="submit"
+              onClick={sendMessage}
+            >
+              Send Message
+            </button>
+          </div>
         </form>
 
         <div className="chat_inputIcons">
