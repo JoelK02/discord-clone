@@ -84,3 +84,7 @@
 .sidebar_profileIcons {
     display: flex;
 }
+
+.sidebar_addChannel:hover {
+    color: white;
+}
