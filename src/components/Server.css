@@ -1,0 +1,36 @@
+.serverBar {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #202225;
+    align-items: center;
+}
+
+.addServerButton {
+    transition-duration: 0.25s;
+    margin-top: 10px;
+    border-radius: 100%;
+    display: flex;
+    background-color: #36393f;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.addIcon {
+    transition-duration: 0.25s;
+    text-align: center;
+    color: #3ba55d;
+}
+
+.addServerButton:hover {
+    background-color: #3ba55d;
+    border-radius: 17px;
+}
+
+.addServerButton:hover>.addIcon {
+    color: white;
+}
+
+.addIcon:hover {
+    color: white;
+}

@@ -1,0 +1,17 @@
+.bubble {
+    display: flex;
+    margin-top: 10px;
+}
+
+.bubble>img {
+    transition-duration: 0.25s;
+    object-fit: cover;
+    height: 55px;
+    width: 55px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.bubble>img:hover {
+    border-radius: 17px;
+}
