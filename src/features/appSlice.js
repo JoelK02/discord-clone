@@ -5,6 +5,8 @@ export const appSlice = createSlice({
     initialState: {
         channelId: null,
         channelName: null,
+        serverId: null,
+        serverName: null,
     },
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
@@ -12,12 +14,19 @@ export const appSlice = createSlice({
             state.channelId = action.payload.channelId;
             state.channelName = action.payload.channelName;
         },
+        setServerInfo: (state, action) => {
+            state.serverId = action.payload.serverId;
+            state.serverName = action.payload.serverName;
+        },
     },
 });
 
-export const { setChannelInfo } = appSlice.actions;
+export const { setChannelInfo, setServerInfo } = appSlice.actions;
 
 export const selectChannelId = (state) => state.app.channelId;
 export const selectChannelName = (state) => state.app.channelName;
+
+export const selectServerId = (state) => state.app.serverId;
+export const selectServerName = (state) => state.app.serverName;
 
 export default appSlice.reducer;

@@ -11,10 +11,14 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import db, { auth } from "../firebase";
 import { useEffect } from "react";
+import { selectServerId, selectServerName } from "../features/appSlice";
 
 function Sidebar() {
   const user = useSelector(selectUser);
+  const serverName = useSelector(selectServerName);
+  const serverId = useSelector(selectServerId);
   const [channels, setChannels] = useState([]);
+  const [servers, setServers] = useState([]);
 
   useEffect(() => {
     db.collection("channels").onSnapshot((snapshot) =>
@@ -25,12 +29,31 @@ function Sidebar() {
         }))
       )
     );
+    db.collection("servers").onSnapshot((snapshot) =>
+      setServers(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          server: doc.data(),
+        }))
+      )
+    );
   }, []);
+
+  useEffect(() => {
+    if (serverId) {
+      db.collection("server")
+        .doc(serverId)
+        .collection("channel")
+        .onSnapshot((snapshot) =>
+          setServers(snapshot.docs.map((doc) => doc.data()))
+        );
+    }
+  }, [serverId]);
 
   const handleAddChannel = () => {
     const channelName = prompt("Enter a new channel name");
     if (channelName) {
-      db.collection("channels").add({
+      db.collection("server").doc(serverId).collection("channel").add({
         channelName: channelName,
       });
     }
@@ -40,7 +63,7 @@ function Sidebar() {
     <div>
       <div className="sidebar">
         <div className="sidebar_top">
-          <h3>Joel Kwoh</h3>
+          <h3>{serverName}</h3>
           <ExpandMoreIcon />
         </div>
 
@@ -57,7 +80,7 @@ function Sidebar() {
           </div>
 
           <div className="sidebar_channelsList">
-            {channels.map(({ id, channel }) => (
+            {servers.map(({ id, channel }) => (
               <SidebarChannel
                 key={id}
                 id={id}
