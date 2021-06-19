@@ -38,16 +38,19 @@
     display: none;
 }
 
-.bubble:hover {
+.bubble:hover,
+.bubble:focus {
     border-radius: 17px;
     background-color: #5865f2;
 }
 
-.bubble>img[src]:hover {
+.bubble>img[src]:hover,
+.bubble>img[src]:focus {
     border-radius: 17px;
     background-color: transparent;
 }
 
 .letter {
+    color: white;
     position: absolute;
 }

@@ -5,6 +5,9 @@ import AddIcon from "@material-ui/icons/Add";
 import db from "../firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
+import { Icon, InlineIcon } from "@iconify/react";
+import discordIcon from "@iconify-icons/simple-icons/discord";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 function Server() {
   const user = useSelector(selectUser);
@@ -33,6 +36,15 @@ function Server() {
   };
   return (
     <div className="serverBar">
+      <div className="discordBubble">
+        <Icon className="discordIcon" icon={discordIcon} />
+      </div>
+      <div className="divider">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEU2OT8/fgR/AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII="
+          alt=""
+        />
+      </div>
       <div className="serverBubble">
         {servers.map(({ id, server }) => (
           <ServerBubble

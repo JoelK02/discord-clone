@@ -37,3 +37,38 @@
 .addIcon:hover {
     color: white;
 }
+
+.discordBubble {
+    margin-bottom: 11px;
+    transition-duration: 00.25s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #36393f;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+}
+
+.discordBubble:hover {
+    border-radius: 17px;
+    background-color: #5865f2;
+}
+
+.discordIcon {
+    color: white;
+    height: 26.3px;
+    width: 26.3px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.divider>img {
+    width: 29px;
+    height: 2px;
+}
