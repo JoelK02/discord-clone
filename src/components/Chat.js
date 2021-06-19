@@ -7,7 +7,12 @@ import GifIcon from "@material-ui/icons/Gif";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import Message from "./Message";
 import { useSelector } from "react-redux";
-import { selectChannelId, selectChannelName } from "../features/appSlice";
+import {
+  selectChannelId,
+  selectChannelName,
+  selectServerId,
+  selectServerName,
+} from "../features/appSlice";
 import { selectUser } from "../features/userSlice";
 import db from "../firebase";
 import firebase from "firebase";
@@ -17,6 +22,8 @@ function Chat() {
   const user = useSelector(selectUser);
   const channelId = useSelector(selectChannelId);
   const channelName = useSelector(selectChannelName);
+  const serverName = useSelector(selectServerName);
+  const serverId = useSelector(selectServerId);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [show, setShow] = useState(false);
@@ -24,7 +31,9 @@ function Chat() {
 
   useEffect(() => {
     if (channelId) {
-      db.collection("channels")
+      db.collection("server")
+        .doc(serverId)
+        .collection("channel")
         .doc(channelId)
         .collection("messages")
         .orderBy("timestamp", "asc")
@@ -37,14 +46,17 @@ function Chat() {
   const sendMessage = (e) => {
     e.preventDefault();
 
-    db.collection("channels").doc(channelId).collection("messages").add({
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      message: input,
-      user: user,
-      image: imageUrl,
-    });
-
-    console.log("hi");
+    db.collection("server")
+      .doc(serverId)
+      .collection("channel")
+      .doc(channelId)
+      .collection("messages")
+      .add({
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        message: input,
+        user: user,
+        image: imageUrl,
+      });
 
     setInput("");
   };

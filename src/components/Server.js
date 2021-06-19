@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Server.css";
 import ServerBubble from "./ServerBubble";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import AddIcon from "@material-ui/icons/Add";
 import db from "../firebase";
 import { useSelector } from "react-redux";

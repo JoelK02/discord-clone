@@ -19,17 +19,10 @@ function Sidebar() {
   const serverId = useSelector(selectServerId);
   const [channels, setChannels] = useState([]);
   const [servers, setServers] = useState([]);
+  const [serverChannel, setServerChannel] = useState([]);
 
   useEffect(() => {
-    db.collection("channels").onSnapshot((snapshot) =>
-      setChannels(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          channel: doc.data(),
-        }))
-      )
-    );
-    db.collection("servers").onSnapshot((snapshot) =>
+    db.collection("server").onSnapshot((snapshot) =>
       setServers(
         snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -45,7 +38,9 @@ function Sidebar() {
         .doc(serverId)
         .collection("channel")
         .onSnapshot((snapshot) =>
-          setServers(snapshot.docs.map((doc) => doc.data()))
+          setServerChannel(
+            snapshot.docs.map((doc) => ({ id: doc.id, channel: doc.data() }))
+          )
         );
     }
   }, [serverId]);
@@ -80,7 +75,7 @@ function Sidebar() {
           </div>
 
           <div className="sidebar_channelsList">
-            {servers.map(({ id, channel }) => (
+            {serverChannel.map(({ id, channel }) => (
               <SidebarChannel
                 key={id}
                 id={id}
