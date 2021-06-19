@@ -3,22 +3,25 @@
     display: flex;
     flex-direction: column;
     background-color: #202225;
+    text-align: center;
     align-items: center;
 }
 
 .addServerButton {
     transition-duration: 0.25s;
-    margin-top: 10px;
+    margin-top: 8px;
     border-radius: 100%;
     display: flex;
     background-color: #36393f;
-    padding: 15px;
+    height: 50px;
+    width: 50px;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
 .addIcon {
     transition-duration: 0.25s;
-    text-align: center;
     color: #3ba55d;
 }
 
