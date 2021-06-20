@@ -63,7 +63,7 @@ function Sidebar() {
           <CloseIcon
             onClick={() => {
               let confirmDelete = window.confirm(
-                "Are you sure you want to delete this channel?"
+                "Are you sure you want to delete this server?"
               );
               if (confirmDelete) {
                 db.collection("server").doc(serverId).delete();

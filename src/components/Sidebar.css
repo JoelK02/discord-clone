@@ -6,6 +6,7 @@
 }
 
 .sidebar_top {
+    transition-duration: 0.25s;
     display: flex;
     justify-content: space-between;
     padding: 16px;
@@ -106,9 +107,23 @@
 
 .sidebar_top[value]>.MuiSvgIcon-root {
     cursor: pointer;
-    visibility: visible;
+    visibility: hidden;
 }
 
 .sidebar_top>.MuiSvgIcon-root {
+    color: gray;
     visibility: hidden;
+}
+
+.sidebar_top:hover>.MuiSvgIcon-root {
+    cursor: pointer;
+    visibility: visible;
+}
+
+.sidebar_top>.MuiSvgIcon-root:hover {
+    color: white;
+}
+
+.sidebar_top:hover {
+    background-color: #33353a;
 }
