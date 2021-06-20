@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import db, { auth } from "../firebase";
 import { useEffect } from "react";
+import CloseIcon from "@material-ui/icons/Close";
 import { selectServerId, selectServerName } from "../features/appSlice";
 
 function Sidebar() {
@@ -57,20 +58,31 @@ function Sidebar() {
   return (
     <div>
       <div className="sidebar">
-        <div className="sidebar_top">
+        <div className="sidebar_top" value={serverId}>
           <h3>{serverName}</h3>
-          <ExpandMoreIcon />
+          <CloseIcon
+            onClick={() => {
+              let confirmDelete = window.confirm(
+                "Are you sure you want to delete this channel?"
+              );
+              if (confirmDelete) {
+                db.collection("server").doc(serverId).delete();
+              } else {
+              }
+            }}
+          />
         </div>
 
         <div className="sidebar_channels">
           <div className="sidebar_channelsHeader">
             <div className="sidebar_header">
-              <ExpandMoreIcon />
+              <ExpandMoreIcon fontSize="small" />
               <h4>Text Channels</h4>
             </div>
             <AddIcon
               onClick={handleAddChannel}
               className="sidebar_addChannel"
+              disabled={!serverId}
             />
           </div>
 
@@ -86,9 +98,14 @@ function Sidebar() {
         </div>
 
         <div className="sidebar_profile">
-          <Avatar onClick={() => auth.signOut()} src={user.photo} />
+          <Avatar
+            className="sidebar_avatar"
+            style={{ height: "35px", width: "35px" }}
+            onClick={() => auth.signOut()}
+            src={user.photo}
+          />
           <div className="sidebar_profileInfo">
-            <h4>{user.displayName}</h4>
+            <h5>{user.displayName}</h5>
             <p>#{user.uid.substring(0, 5)}</p>
           </div>
 

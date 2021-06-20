@@ -54,3 +54,7 @@
     color: white;
     position: absolute;
 }
+
+:target {
+    background-color: green;
+}

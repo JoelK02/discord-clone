@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import { Icon, InlineIcon } from "@iconify/react";
 import discordIcon from "@iconify-icons/simple-icons/discord";
-import RemoveIcon from "@material-ui/icons/Remove";
 
 function Server() {
   const user = useSelector(selectUser);

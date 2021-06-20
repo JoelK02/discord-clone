@@ -1,28 +1,38 @@
-.channelSection:hover>h4 {
+.channelSection:hover>div {
     color: white;
     background-color: #40464b;
+    border-radius: 10px;
 }
 
-.channelSection>h4 {
+.channelName {
     display: flex;
-    padding-left: 10px;
+    flex: 1;
+}
+
+.channelSection>div {
+    display: flex;
+    padding-left: 8px;
     align-items: center;
     background-color: #2f3135;
     color: gray;
     cursor: pointer;
 }
 
-.channelSection>.channel_delete {
+.channel_delete {
     color: #2f3135;
 }
 
-.channel_delete>.channelDelete:hover {
-    color: grey;
+.channelDelete:hover {
+    color: white;
+}
+
+.channel_text:hover>.channel_delete {
+    color: gray;
 }
 
 .sidebarChannel_hash {
-    font-size: 30px;
-    padding: 8px;
+    font-size: 20px;
+    padding-right: 8px;
 }
 
 .channelSection {
@@ -30,9 +40,12 @@
 }
 
 .channel_text {
+    height: 40px;
+    margin: 0px 7px;
     flex: 1;
 }
 
 .channel_delete {
-    padding: 10px;
+    padding: 8px;
+    font-size: 10px;
 }
